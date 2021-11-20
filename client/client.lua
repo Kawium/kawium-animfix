@@ -1,12 +1,12 @@
 RegisterCommand("animfix", function(source, args, rawCommand)
     local ped = PlayerPedId()
-    
+    local isDead = false
 
     if not IsEntityInAir(ped) then
         if not IsPedRagdoll(ped) then
             if not IsPedInAnyVehicle(ped) then
                 ClearPedTasksImmediately(ped)
-            
+                ClearPedSecondaryTask(ped)
                 SetPedCanPlayGestureAnims(ped, true)
             else
                 exports.pNotify:SendNotification({text = 'You can only use this command when outside the vehicle.', timeout = 5500, layout = "bottomCenter"})
